@@ -1,5 +1,6 @@
 package com.plazoleta.traceability.domain.api;
 
+import com.plazoleta.traceability.domain.model.OrderRanking;
 import com.plazoleta.traceability.domain.model.OrderStatusLog;
 import com.plazoleta.traceability.domain.model.OrderWithLog;
 
@@ -13,5 +14,7 @@ public interface IOrderLogServicePort {
     OrderWithLog getOrderLogByOrderId(Long orderId);
 
     List<OrderWithLog> getAllOrderLogByCustomer();
+
+    OrderRanking getOrderRankingOfRestaurant(Long restaurantId);
 
 }

@@ -40,6 +40,8 @@ public class SecurityConfig {
                     registry.requestMatchers(HttpMethod.POST,"/api/order-log").permitAll();
                     registry.requestMatchers(HttpMethod.GET, "/api/order-log/customer").hasRole(RoleEnum.CLIENTE.getName());
                     registry.requestMatchers(HttpMethod.GET, "/api/order-log/order/*").hasAnyRole(RoleEnum.CLIENTE.getName(), RoleEnum.ADMINISTRATOR.getName());
+                    registry.requestMatchers(HttpMethod.GET, "/api/order-log/ranking/*").permitAll();
+
                 })
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

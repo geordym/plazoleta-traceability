@@ -14,4 +14,11 @@ public interface IOrderLogPersistencePort {
 
     List<OrderStatusLog> findAllOrderStatusLogByCustomerId(Long customerId);
 
+
+    List<OrderStatusLog> findAllOrderStatusLogByEmployeeId(Long employeeId);
+
+
+    List<OrderStatusLog> findAllOrderStatusLogByRestaurantId(Long restaurantId);
+    List<Long> findAllEmployeesByRestaurantId(Long restaurantId);
+
 }

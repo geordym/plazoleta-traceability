@@ -3,6 +3,7 @@ package com.plazoleta.traceability.infraestructure.in.rest;
 
 import com.plazoleta.traceability.application.dto.request.CreateOrderStatusLogRequest;
 import com.plazoleta.traceability.application.handler.IOrderStatusLogHandler;
+import com.plazoleta.traceability.domain.model.OrderRanking;
 import com.plazoleta.traceability.domain.model.OrderWithLog;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,13 @@ import java.util.List;
 public class OrderStatusLogController {
 
     private final IOrderStatusLogHandler orderStatusLogHandler;
+
+    @GetMapping("/ranking/{restaurantId}")
+    public ResponseEntity<OrderRanking> getOrderRankingOfRestaurant(@PathVariable Long restaurantId){
+        OrderRanking orderRanking = orderStatusLogHandler.getOrderRankingOfRestaurant(restaurantId);
+        return new ResponseEntity<>(orderRanking, HttpStatus.OK);
+    }
+
 
     @GetMapping("/order/customer")
     public ResponseEntity<List<OrderWithLog>> getAllOrderLogByCustomerId(){

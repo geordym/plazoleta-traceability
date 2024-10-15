@@ -4,6 +4,7 @@ import com.plazoleta.traceability.application.dto.request.CreateOrderStatusLogRe
 import com.plazoleta.traceability.application.handler.IOrderStatusLogHandler;
 import com.plazoleta.traceability.application.mapper.IOrderStatusRequestMapper;
 import com.plazoleta.traceability.domain.api.IOrderLogServicePort;
+import com.plazoleta.traceability.domain.model.OrderRanking;
 import com.plazoleta.traceability.domain.model.OrderWithLog;
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +30,11 @@ public class OrderStatusHandlerImpl implements IOrderStatusLogHandler {
     public List<OrderWithLog> getAllOrderLogByCustomer() {
         List<OrderWithLog> order = orderLogServicePort.getAllOrderLogByCustomer();
         return order;
+    }
+
+    @Override
+    public OrderRanking getOrderRankingOfRestaurant(Long restaurantId) {
+        return orderLogServicePort.getOrderRankingOfRestaurant(restaurantId);
     }
 
 }

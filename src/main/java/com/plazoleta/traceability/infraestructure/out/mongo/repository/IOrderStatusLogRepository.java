@@ -28,4 +28,14 @@ public interface IOrderStatusLogRepository extends MongoRepository<OrderStatusLo
     @Query(value = "{ 'customerId': ?0 }")
     List<OrderStatusLogEntity> findAllByCustomerId(Long customerId, Sort sort);
 
+    @Query(value = "{ 'restaurantId': ?0 }")
+    List<OrderStatusLogEntity> findAllByRestaurantId(Long restaurantId, Sort sort);
+
+    @Query(value = "{ 'restaurantId': ?0, 'employeeId': { '$exists': true } }")
+    List<OrderStatusLogEntity> findAllByRestaurantIdWithEmployee(Long restaurantId);
+
+    @Query(value = "{ 'employeeId': ?0, 'employeeId': { '$exists': true } }")
+    List<OrderStatusLogEntity> findAllByEmployeeId(Long employeeId);
+
+
 }
