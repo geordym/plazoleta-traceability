@@ -19,7 +19,6 @@ public class OrderLogUseCase implements IOrderLogServicePort {
 
     @Override
     public void createLog(OrderStatusLog orderStatusLog) {
-
         String lastOrderStatus = "";
         Optional<OrderStatusLog> lastOrderStatusLog = orderLogPersistencePort.findLastOrderStatusLogByOrderId(orderStatusLog.getOrderId());
         if(lastOrderStatusLog.isPresent()){
