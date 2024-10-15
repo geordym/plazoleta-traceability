@@ -6,6 +6,7 @@ import com.plazoleta.traceability.application.handler.impl.OrderStatusHandlerImp
 import com.plazoleta.traceability.application.mapper.IOrderStatusRequestMapper;
 import com.plazoleta.traceability.domain.api.IOrderLogServicePort;
 import com.plazoleta.traceability.domain.spi.IOrderLogPersistencePort;
+import com.plazoleta.traceability.domain.spi.IUserAuthenticationPort;
 import com.plazoleta.traceability.domain.usecase.OrderLogUseCase;
 import com.plazoleta.traceability.infraestructure.out.mongo.adapter.OrderLogMongoAdapter;
 import com.plazoleta.traceability.infraestructure.out.mongo.mapper.IOrderStatusLogEntityMapper;
@@ -21,6 +22,7 @@ public class OrderStatusLogBeanConfiguration {
     private final IOrderStatusRequestMapper orderStatusRequestMapper;
     private final IOrderStatusLogEntityMapper orderStatusLogEntityMapper;
     private final IOrderStatusLogRepository orderStatusLogRepository;
+    private final IUserAuthenticationPort userAuthenticationPort;
 
     @Bean
     public IOrderStatusLogHandler orderStatusLogHandler(){
@@ -29,7 +31,7 @@ public class OrderStatusLogBeanConfiguration {
 
     @Bean
     public IOrderLogServicePort orderLogServicePort(){
-        return new OrderLogUseCase(orderLogPersistencePort());
+        return new OrderLogUseCase(orderLogPersistencePort(), userAuthenticationPort);
     }
 
     @Bean

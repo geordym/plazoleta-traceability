@@ -2,6 +2,7 @@ package com.plazoleta.traceability.infraestructure.out.mongo.repository;
 
 import com.plazoleta.traceability.domain.model.OrderStatusLog;
 import com.plazoleta.traceability.infraestructure.out.mongo.entity.OrderStatusLogEntity;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,11 @@ public interface IOrderStatusLogRepository extends MongoRepository<OrderStatusLo
 
     @Query(value = "{ 'orderId': ?0 }", sort = "{ 'updatedAt': -1 }")
     List<OrderStatusLogEntity> findLastOrderStatusLogByOrderId(Long orderId);
+
+    @Query(value = "{ 'orderId': ?0 }")
+    List<OrderStatusLogEntity> findAllByOrderId(Long orderId, Sort sort);
+
+    @Query(value = "{ 'customerId': ?0 }")
+    List<OrderStatusLogEntity> findAllByCustomerId(Long customerId, Sort sort);
 
 }

@@ -27,15 +27,7 @@ public class UserAuthenticationAdapter implements IUserAuthenticationPort {
 
     @Override
     public Role getAuthenticatedUserRole() {
-        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        /*String firstAuthority = customUserDetails.getAuthorities().stream()
-                .findFirst()
-                .map(GrantedAuthority::getAuthority)
-                .orElse(null);
-
-        return RoleEnum.fromName(firstAuthority).toModel(); */
-        return null;
+        return null; //TODO: If you need that later, use that
     }
 
 
